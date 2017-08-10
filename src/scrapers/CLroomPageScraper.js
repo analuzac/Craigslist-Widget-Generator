@@ -35,10 +35,14 @@ class CLroomPageScraper {
       timeline = 'Timeline - Not Available';
     }
 
+    let widgetData={};
+
     //let image = doc.getElementsByClassName("thumb")[0].href;
-    let image = doc.querySelector(".thumb").href;
+    let image = doc.querySelector(".thumb");
     if (image === null || image === '' || image === undefined){
-      image = 'static/images/SanFranciscoCartoon.jpg';
+      widgetData.image = 'static/images/SanFranciscoCartoon.jpg';
+    } else {
+      widgetData.image = image.href;
     }
 
       //Interesting additional info, but crowds widget too much
@@ -50,11 +54,9 @@ class CLroomPageScraper {
       //   }
       // }
 
-      let widgetData={};
-      widgetData.image = image;
       widgetData.price = price.innerText;
       widgetData.location = location.innerText;
-      widgetData.timeline = timeline.innerText;
+      widgetData.extrainfo = timeline.innerText;
 
       return widgetData;
     })

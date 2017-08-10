@@ -1,0 +1,11 @@
+1. use querySelector and querySelectorAll only [DONE]
+
+2. when scraping, use defensive programming to check if the DOM elements you are querying are not null/undefined
+    e.g. account for posts that don't have thumbnails images [DONE]
+
+3. make your buildWidget function a separate module (i.e. separate javascript file) that you require in index.js
+    put the modules src/components/Widget.js [DONE]
+
+4. Challenge: scrape data from another CL page (furniture page).
+  - Rename CraigslistPageScraper => CLRoomPageScraper [DONE]
+  - Develop new CLFurniturePageScraper [DONE]

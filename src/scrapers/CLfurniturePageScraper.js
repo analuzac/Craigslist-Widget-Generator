@@ -27,21 +27,23 @@ class CLfurniturePageScraper {
       location = 'Location - Not Available';
     }
 
-    let condition = doc.querySelector(".attrgroup");
+    let condition = doc.querySelector("b");
     if (condition === null || condition === '' || condition === undefined ){
       condition = 'Condition - Not Available';
     }
 
-    let image = doc.querySelector(".thumb").href;
+    let widgetData={};
+
+    let image = doc.querySelector(".thumb");
     if (image === null || image === '' || image === undefined){
-      image = 'static/images/BedroomSetCartoon.jpg';
+      widgetData.image = 'static/images/BedroomSetCartoon.jpg';
+    } else {
+      widgetData.image = image.href;
     }
 
-      let widgetData={};
-      widgetData.image = image;
       widgetData.price = price.innerText;
       widgetData.location = location.innerText;
-      widgetData.condition = condition.innerText;
+      widgetData.extrainfo = `${condition.innerText} condition`;
 
       return widgetData;
     })

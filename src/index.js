@@ -3,7 +3,7 @@ const { div, form, i, input, label, button, nav, span } = require('elementx')
 
 const CLroomPageScraper = require('./scrapers/CLroomPageScraper');
 
-// const CLfurniturePageScraper = require('./scrapers/CLfurniturePageScraper');
+ const CLfurniturePageScraper = require('./scrapers/CLfurniturePageScraper');
 
 const Widget = require('./components/Widget');
 
@@ -29,11 +29,21 @@ const $app = div(
     div({ class: 'row' },
       div({ class: 'input-field col s12 m12' },
         i({ class: 'material-icons prefix indigo-text'},'home'),
-        input({ id: 'url',
+        input({ id: 'urlRoom',
                 type: 'text',
                 class: 'validate'
                 }),
-        label({ for: 'url'},'CRAIGSLIST HOUSING URL')
+        label({ for: 'url'},'CRAIGSLIST ROOM URL')
+      )
+    ),
+    div({ class: 'row' },
+      div({ class: 'input-field col s12 m12' },
+        i({ class: 'material-icons prefix indigo-text'},'hotel'),
+        input({ id: 'urlFurniture',
+                type: 'text',
+                class: 'validate'
+                }),
+        label({ for: 'url'},'CRAIGSLIST FURNITURE URL')
       )
     ),
     div({ class: 'row center' },
@@ -53,15 +63,25 @@ $root.appendChild($app);
 
 
 // Function that brings everything together
-// Scraping begins when user inputs url and presses submit buttom
+// Scraping begins when user inputs urls and presses submit buttom
 function main(){
-let input = document.getElementById("url");
+let inputRoom = document.getElementById("urlRoom");
+let inputFurniture = document.getElementById("urlFurniture");
 document.getElementById("submit-button").addEventListener("click", () =>{
   event.preventDefault();
-  const scraper = new CLroomPageScraper();
-  scraper.scrape(input.value).then(data => {
+
+  //Room case
+  const scraperRoom = new CLroomPageScraper();
+  scraperRoom.scrape(inputRoom.value).then(data => {
     document.getElementById('widgets').appendChild(Widget(data));
   });
+
+  //Furniture case
+  const scraperFurniture = new CLfurniturePageScraper();
+  scraperFurniture.scrape(inputFurniture.value).then(data => {
+    document.getElementById('widgets').appendChild(Widget(data));
+  });
+
 });
 }
 

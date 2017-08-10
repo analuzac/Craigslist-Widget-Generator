@@ -15,7 +15,7 @@ module.exports = function Widget(widgetData) {
             h5({class:'black-text center'},widgetData.price),
             ul(
               li({class:'center'},widgetData.location),
-              li({class:'center'},widgetData.timeline)
+              li({class:'center'},widgetData.extrainfo)
             )
           )
         )
