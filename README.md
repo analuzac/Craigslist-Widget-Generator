@@ -1,58 +1,12 @@
-# Q1 Project: Web Page Scraper and Widget Generator
+# Craigslist Web Page Scraper and Widget Generator
+![Sample-Widget1](public/static/images/Sample-Widget1.png)
+![Sample-Widget2](public/static/images/Sample-Widget2.png)
 
-You've been tasked with the job of scraping data from a particular set of web pages, and then using that data to generate HTML widgets that can (_eventually_) be shared and embedded within other web sites.
+# Technology
+Most of the code is written in JavaScript. There is a very simple static HTML skeleton, and the rest of the HTML is generated dynamically using JavaScript. All HTTP requests/AJAX calls were done using the fetch API. The HTML parsing was done with the DOMParser and the data was extracted using DOM query methods. Elementx library was used to create all HTML/DOM elements. Any CSS is done using Materialize and optimized for various viewport sizes. Lastly, Surge was used to deploy to a production environment.
 
-You should be able to generate many widgets from the same _type of_ web pages. In other words, with the same code, you should be able to extract data from many source pages (of the _same type_) and, hence, generate many widgets. Each source page should share the same HTML structure, but contain different content. The page scraping process will extract a common data structure that can be used to populate the content of your widgets. Each widget will look the same, but is generated from different content (since presumably the source pages have different content). Here are some examples of web pages you could scrape to generate widgets for.
+# Product Inspiration
+People are often stressed out when they have to move, especially when they have to relocate from other states or countries. Some of these concerns include finding the right apartment and a bed where they can sleep on upon arrival. Unless they have friends in the area, people relocating have an additional disadvantage of not knowing about the most secure places to live while still being in close proximity to work, public transit, grocery stores, etc.
 
-- ESPN Team Pages
-  - [Golden State Warriors](http://www.espn.com/nba/team/_/name/gs/golden-state-warriors)
-  - [San Francisco Giants](http://www.espn.com/mlb/team/_/name/sf/san-francisco-giants)
-- Rotten Tomatoes Movie Pages
-  - [Star Wars: Rogue One](https://www.rottentomatoes.com/m/rogue_one_a_star_wars_story)
-  - [Star Wars: The Force Awakens](https://www.rottentomatoes.com/m/star_wars_episode_vii_the_force_awakens)
-- Amazon Product Pages
-  - [Gorilla Spinners](https://www.amazon.com/gp/product/B071WMGDXX)
-  - [Smart Water](https://www.amazon.com/gp/product/B00KIG3WPQ)
-
-## Step 1
-
-The first thing you should do is create an ES6-style class constructor for your web page scraper. It’s name should end in `*PageScraper` (e.g., `ESPNTeamPageScraper`, `RottonTomatoesPageScraper`, `AmazonProductPageScraper`, etc.). The interface for this `PageScraper` class should be as follows:
-
-`scrape(url)`
-- **Input Parameters:** the URL for the web page to be fetched and scraped
-- **Output:** A promise. When the promise resolves, it should contain an object of key/value pairs representing the data that was extracted from the source web page.
-
-Your `PageScraper`'s source file should be located in the `src/scrapers/` directory.
-
-## Step 2
-
-Create a dynamically generated HTML widget based on the data that was scraped in Step 1.
-
-For the MVP (Minimum Viable Product), simply create a basic HTML form to accept the URL of one or more web pages that will be used as the source of data for your widget.
-
-On submitting the form, invoke your `PageScraper` (from Step 1) to fetch and extract the necessary data. Based on the data scraped from the given web page(s), dynamically generate an HTML widget and display it under the form.
-
-Recall, you should be able to generate many widgets from the same _type of_ web page.
-
-## Technical Requirements
-
-You MUST...
-- Use the `fetch` API to make HTTP requests / AJAX calls
-- Use the `DOMParser` class to parse HTML and extract data from that HTML using DOM query methods
-- Use the `elementx` library, and functional composition, to create *all* HTML/DOM elements
-- Use CSS to style your widget and form
-- Your widget must contain some type of media element (e.g., video, audio, image, etc.)
-- Your widget must be responsive (i.e., adaptable to smaller screen sizes)
-- Respond to form input and/or user events
-- Have valid, well-indented, and semantic HTML
-- Have valid, well-indented, and minimally-specific CSS
-- Have linted, readable, and concise JavaScript.
-- Be deployed to a production environment, like Surge.
-- Optimize for various viewport sizes using responsive design.
-
-You CAN...
-- Use a front-end framework like Bootstrap, Foundation, Materialize, or Semantic UI a basis for your CSS
-
-You CANNOT...
-- Use web development framework (e.g., React, Angular, Backbone, etc.)
-# Q1project
+# Product Features
+The idea behind the widgets generated is to be able to show recommended listings for both rooms and furniture in the same neighborhood to make the transition easier. Some short-term improvements include incorporating information about the safety of the neighborhood, school districts, as well as walkability and public transit scores. Some long-term improvements include optimizing the end-to-end experience of the user during relocation which could include scheduling an airport pick up with say Lyft or Uber, and delighting the user with their room already furnished upon arrival with the help of moving services like Lugg.
