@@ -75,27 +75,47 @@ document.getElementById("submit-button").addEventListener("click", () =>{
   //Room case - input validation
   if (inputRoom.value === null || inputRoom.value === '' || !inputRoom.value.includes('craigslist') || !inputRoom.value.startsWith('http')) {
      return Materialize.toast('Please input a valid Craigslist Rooms & Shares url', 4000,'rounded red');
-
-   }  else {
-    const scraperRoom = new CLroomPageScraper();
-    scraperRoom.scrape(inputRoom.value).then(data => {
-      document.getElementById('widgets').appendChild(Widget(data));
-    });
   }
-
   //Furniture case - input validation
   if (inputFurniture.value === null || inputFurniture.value === '' || !inputFurniture.value.includes('craigslist') || !inputFurniture.value.startsWith('http')) {
      return Materialize.toast('Please input a valid Craigslist Furniture url', 4000,'rounded red');
-
-   }  else {
+  }
+  else {
+  const scraperRoom = new CLroomPageScraper();
   const scraperFurniture = new CLfurniturePageScraper();
-  scraperFurniture.scrape(inputFurniture.value).then(data => {
-    document.getElementById('widgets').appendChild(Widget(data));
+
+  Promise.all([scraperRoom.scrape(inputRoom.value),scraperFurniture.scrape(inputFurniture.value)]).then(results => {
+    let roomInfo = results[0];
+    let furnInfo = results[1];
+    document.getElementById('widgets').appendChild(Widget(roomInfo,furnInfo));
   });
   }
 
 });
 }
+
+  // //Room case - input validation
+  // if (inputRoom.value === null || inputRoom.value === '' || !inputRoom.value.includes('craigslist') || !inputRoom.value.startsWith('http')) {
+  //    return Materialize.toast('Please input a valid Craigslist Rooms & Shares url', 4000,'rounded red');
+  //
+  //  }  else {
+  //   const scraperRoom = new CLroomPageScraper();
+  //   scraperRoom.scrape(inputRoom.value).then(data => {
+  //     document.getElementById('widgets').appendChild(Widget(data));
+  //   });
+  // }
+  //
+  // //Furniture case - input validation
+  // if (inputFurniture.value === null || inputFurniture.value === '' || !inputFurniture.value.includes('craigslist') || !inputFurniture.value.startsWith('http')) {
+  //    return Materialize.toast('Please input a valid Craigslist Furniture url', 4000,'rounded red');
+  //
+  //  }  else {
+  // const scraperFurniture = new CLfurniturePageScraper();
+  // scraperFurniture.scrape(inputFurniture.value).then(data => {
+  //   document.getElementById('widgets').appendChild(Widget(data));
+  // });
+  // }
+
 
 
 
