@@ -3,7 +3,7 @@ const { div, form, i, input, label, button, nav, span } = require('elementx')
 
 const CLroomPageScraper = require('./scrapers/CLroomPageScraper');
 
- const CLfurniturePageScraper = require('./scrapers/CLfurniturePageScraper');
+const CLfurniturePageScraper = require('./scrapers/CLfurniturePageScraper');
 
 const Widget = require('./components/Widget');
 
@@ -65,22 +65,34 @@ $root.appendChild($app);
 // Function that brings everything together
 // Scraping begins when user inputs urls and presses submit buttom
 function main(){
+
 let inputRoom = document.getElementById("urlRoom");
 let inputFurniture = document.getElementById("urlFurniture");
+
 document.getElementById("submit-button").addEventListener("click", () =>{
   event.preventDefault();
 
-  //Room case
-  const scraperRoom = new CLroomPageScraper();
-  scraperRoom.scrape(inputRoom.value).then(data => {
-    document.getElementById('widgets').appendChild(Widget(data));
-  });
+  //Room case - input validation
+  if (inputRoom.value === null || inputRoom.value === '' || !inputRoom.value.includes('craigslist') || !inputRoom.value.startsWith('http')) {
+     return Materialize.toast('Please input a valid Craigslist Rooms & Shares url', 4000,'rounded red');
 
-  //Furniture case
+   }  else {
+    const scraperRoom = new CLroomPageScraper();
+    scraperRoom.scrape(inputRoom.value).then(data => {
+      document.getElementById('widgets').appendChild(Widget(data));
+    });
+  }
+
+  //Furniture case - input validation
+  if (inputFurniture.value === null || inputFurniture.value === '' || !inputFurniture.value.includes('craigslist') || !inputFurniture.value.startsWith('http')) {
+     return Materialize.toast('Please input a valid Craigslist Furniture url', 4000,'rounded red');
+
+   }  else {
   const scraperFurniture = new CLfurniturePageScraper();
   scraperFurniture.scrape(inputFurniture.value).then(data => {
     document.getElementById('widgets').appendChild(Widget(data));
   });
+  }
 
 });
 }
