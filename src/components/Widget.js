@@ -14,21 +14,19 @@ module.exports = function Widget(roomInfo,furnInfo) {
               img({ src: roomInfo.image,
                   height: '100%',
                   width: '100%',
-                  class: 'col s12 m6'}),
+                  class: 'col s6 m6'}),
               img({ src: furnInfo.image,
                   height: '100%',
                   width: '100%',
-                  class: 'col s12 m6'})
+                  class: 'col s6 m6'})
               )
             ),
           div({ class: 'card-content black-text' },
-            ul({class: 'left',
-                style: "padding-left: 35px"},
+            ul({class: 'col s6 m6' },
               li({class:'center'},roomInfo.price),
               li({class:'center'},roomInfo.extrainfo)
             ),
-            ul({class: 'right',
-                style: "padding-right: 35px"},
+            ul({class: 'col s6 m6' },
               li({class:'center'},furnInfo.price),
               li({class:'center'},furnInfo.extrainfo)
             )
