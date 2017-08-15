@@ -2,10 +2,12 @@
 ![sample-widgets](public/static/images/sample-widgets.png)
 
 # Technology
-Most of the code is written in JavaScript. There is a very simple static HTML skeleton, and the rest of the HTML is generated dynamically using JavaScript. All HTTP requests/AJAX calls were done using the fetch API. The HTML parsing was done with the DOMParser and the data was extracted using DOM query methods. Elementx library was used to create all HTML/DOM elements. Any CSS is done using Materialize and optimized for various viewport sizes. Lastly, Surge was used to deploy to a production environment: [http://craigslist-widget-generator.surge.sh/](http://craigslist-widget-generator.surge.sh/)
+Most of the code is written in JavaScript. There is a very simple static HTML skeleton, and the rest of the HTML is generated dynamically using JavaScript. All HTTP requests/AJAX calls were done using the fetch API. The HTML parsing was done with the DOMParser and the data was extracted using DOM query methods. Elementx library was used to create all HTML/DOM elements. Any CSS is done using Materialize and optimized for various viewport sizes. Lastly, Surge was used to deploy to a production environment: [craigslist-widget-generator](http://craigslist-widget-generator.surge.sh/)
 
 Here are some sample inputs to test if you'd like to generate a widget yourself:
+
 Room url -> http://craigslist-widget-generator.surge.sh/sources/craigslist-Room1.htm
+
 Furniture url -> http://craigslist-widget-generator.surge.sh/sources/craigslist-Furniture1.htm
 
 # Product Inspiration
